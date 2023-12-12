@@ -4,15 +4,21 @@
 
 {% block contenu %}
 
-<div class="container">
-<h1>Les articles de la categorie {{categorie}} sont :</h1>
-    <ul>
+<div class="container mt-4">
+<h1 class="mb-3">Les articles de la categorie {{categorie}} :</h1>
+    <div class="row">
         <!-- Boucle pour afficher les articles  -->
         {% for article in articles %}
-            <li>
-                <a href="{{ url_for('article', categorie=categorie, article=article) }}">{{ article }}</a>
-            </li>
+            <div class="col-md-4 mb-3">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ article[1] }}</h5>
+                <p class="card-text"><small class="text-muted">Publié le {{ article[0] }}</small></p>
+                <a class="btn btn-primary btn-sm" href="{{ url_for('article', categorie=categorie, article=article[2]) }}">Lire</a>
+            </div>
+            </div>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}

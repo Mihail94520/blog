@@ -1,69 +1,12 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8" >
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mon Site Minimaliste</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</head>
-<body>
-    <div class="container">
-    <ul>
-        <!-- Boucle pour afficher les categories comme des elements de menu -->
-        {% for categorie in categories %}
-            <li>
-                <a href="{{ url_for('categorie', nom=categorie) }}">{{ categorie }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <p>bonjour, voici un lien <a href="http://google.com">vers google</a>. Clique dessus.
-    Et je fais du baratin pour
-    avoir une ligne plus longue</p>
-    <p>Ceci est un autre<br /> paragraphe.</p>
+{% extends "base.html" %}
 
-    <p>éè çàLorem ipsum <em>dolor (italique)</em> sit amet, <strong>consectetur (caracteres gras)
-    </strong> <b>adipiscing (bold ancien)</b>>elit,
-    sed <mark>do eiusmod tempor (surlignage)</mark> <s>incididunt (barre = strikethrough)</s> ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nos<sub>trud (indice = subscript)</sub>
-    <sup>itation(exposant=superscript)</sup> ullamco laboris nisi ut aliquip
-    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-    sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+{% block titre %}Mon Site Minimaliste{% endblock %}
 
-    <h1>titre 1 (heading)</h1>
-    <h2>titre 2 (heading)</h2>
-    <h3>titre 3 (heading)</h3>
-    <h4>titre 4 (heading)</h4>
-
-    <article>
-        <form id="formulaire">
-            <fieldset>
-                <div class="mb-3">
-                <label for="cote_a">Longueur du premier côté</label>
-                <input type="text" class="form-control" id="cote_a" />
-                </div>
-                <div class="mb-3">
-                <label for="cote_b">Longueur du second côté</label>
-                <input type="text" class="form-control" id="cote_b" />
-                </div>
-                <input type="submit" class="submit" value="Calculer" />
-           </fieldset>
-        </form>
-        <p id="resultat"></p>
-    </article>
-    </div>
-
-<script>
-    function calcule(event) {
-        let a = parseFloat(document.getElementById("cote_a").value);
-        let b = parseFloat(document.getElementById("cote_b").value);
-        let c = Math.hypot(a, b);
-        console.log(c);
-        document.getElementById("resultat").innerHTML = c.toString();
-        event.preventDefault();
-    }
-    document.getElementById("formulaire").addEventListener("submit", calcule);
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</body>
-</html>
+{% block contenu %}
+<div class="container">
+    <!-- Boucle pour afficher les categories comme des elements de menu -->
+    {% for categorie in categories %}
+        <a class="btn btn-primary btn-lg mt-2 mb-2" href="{{ url_for('categorie', nom=categorie) }}">{{ categorie }}</a><br>
+    {% endfor %}
+</div>
+{% endblock %}
