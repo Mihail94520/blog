@@ -46,6 +46,6 @@ def produit(nombre1, nombre2):
         produit=int(nombre1)+int(nombre2))
 
 if __name__ == '__main__':
-    print('http://127.0.0.1:5000/') # domain name server
-    app.run(debug=True)
+    print('http://127.0.0.1:6000/') # domain name server
+    app.run(debug=True, port=5001)
 
